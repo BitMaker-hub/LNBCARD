@@ -1,5 +1,5 @@
 
-<img style="max-width:100%;" src="https://github.com/BitMaker-hub/nanoBitcoinSwitch/blob/master/Recursos/miniatura.jpg">
+<img style="max-width:100%;" src="https://github.com/BitMaker-hub/LNBCARD/blob/master/Recursos/miniatura.jpg">
 
 # LNBCARD - Shiny Bitcoin&Nostr payments
 

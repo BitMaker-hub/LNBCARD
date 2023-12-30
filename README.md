@@ -3,10 +3,10 @@
 
 # LNBCARD - Shiny Bitcoin&Nostr payments
 
-** The LNBCARD **
+**The LNBCARD**
 
-This is an **open source project** to let you test lightning payment notifications. 
-Connect your LNBCard to your LNBits wallet or Alby wallet (LNDhub) and receive light notifications.
+This is an **open source project** that let you test lightning payment notifications.
+Connect the LNBCard to your LNBits wallet or Alby wallet (LNDhub) and receive light notifications.
 
 This board can be used as a cool Tip accessory for your shop or to bring it on a meetup and teach about lightning.
 

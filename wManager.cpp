@@ -95,15 +95,15 @@ void init_WifiManager()
     WiFiManagerParameter custom_Title1("<strong>Connection method 1 - LNBits (default)</strong><br><br>");
 
     // Text box (String) - 80 characters maximum
-    WiFiManagerParameter LNURL_text_box("LNURLServer", "legend.lnbits.com", myLNBcard.Settings.LNURLServer.c_str(), 120);
+    WiFiManagerParameter LNURL_text_box("LNURLServer", "legend.lnbits.com", myLNBcard.Settings.LNURLServer.c_str(), 150);
     
     // Text box (String) - 80 characters maximum
-    WiFiManagerParameter LNWallet_text_box("LNURLWallet", "Your LNBITs LNURLWallet", myLNBcard.Settings.LNURLWallet.c_str(), 120);
+    WiFiManagerParameter LNWallet_text_box("LNURLWallet", "Your LNBITs LNURLWallet", myLNBcard.Settings.LNURLWallet.c_str(), 150);
 
     WiFiManagerParameter custom_Title2("<hr><br><strong>Connection method 2 - LNDHUB GetAlby</strong><br><i>Set a [0] on LNBits wallet to use this connectivity method</i><br><br>");
     
     // Text box (String) - 80 characters maximum
-    WiFiManagerParameter LNURI_text_box("LNDHubURI", "Your LNDHUBuri used by getAlby wallet", myLNBcard.Settings.LNDHUBuri.c_str(), 120);
+    WiFiManagerParameter LNURI_text_box("LNDHubURI", "Your LNDHUBuri used by getAlby wallet", myLNBcard.Settings.LNDHUBuri.c_str(), 200);
 
     WiFiManagerParameter custom_Title3("<hr><br>⚡<strong>Bolt Color/Effects</strong>⚡<br><br>");  \
     

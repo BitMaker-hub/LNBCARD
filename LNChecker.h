@@ -13,7 +13,8 @@
 #define DEFAULT_LNBITS_SERVER   "legend.lnbits.com"                      //Url (legend.lnbits.com) or your onion address
 #define DEFAULT_WALLET          "8d918866a20948439874f951638b6187" //"YiqCNFJ4tWF9qjpqzqpK7t"
 
-#define LNHUBServer   "ln.getalby.com"  
+//#define LNHUBurl  "getalby.com/lndhub/"
+//#define LNHUBServer   "getalby.com" //"ln.getalby.com"  
 
 //Time update period
 #define UPDATE_PERIOD_h   5

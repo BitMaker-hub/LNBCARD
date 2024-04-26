@@ -10,7 +10,7 @@
 #include "wManager.h"
 #include "LNChecker.h"
 
-#define CURRENT_VERSION "v1.0.1"
+#define CURRENT_VERSION "v1.0.2"
 
 /********************** ⚡ GLOBAL Vars *******************************/
 OneButton button1(PIN_BUTTON_1);

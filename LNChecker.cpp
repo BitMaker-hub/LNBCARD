@@ -75,30 +75,55 @@ String refresh_token = "";
 String access_token = "";
 String login_auth = "";
 String password_auth = "";
+String server_url = "";
+String LNHUBServer = "";
+String api_path = "";
 
 
 void setupLNDHubChecker(void){
   Serial.println("[CHECKER] Starting checker in LNDHub Checker Mode");
   String uri = myLNBcard.Settings.LNDHUBuri;
-  
-  String credentials = uri.substring(9,uri.indexOf("@"));
+
+  //PARSE LNDHUB URI
+  //Extraer credenciales
+  int atIndex = uri.indexOf('@');
+  String credentials = uri.substring(9,atIndex);
   login_auth = credentials.substring(0,credentials.indexOf(":"));
   password_auth = credentials.substring(credentials.indexOf(":")+1); 
+
+  //Extraer la url del server
+  server_url = uri.substring(atIndex+1);
+  int protocolEndIndex = server_url.indexOf("://") + 3; // Saltar el protocolo (http, https, etc.)
+  int serverEndIndex = server_url.indexOf('/', protocolEndIndex); // Encontrar el final del servidor
+  if (serverEndIndex == -1) { // Si no hay más '/' después del servidor
+    serverEndIndex = server_url.length();
+  }
+  LNHUBServer = server_url.substring(protocolEndIndex, serverEndIndex); // Extraer el servidor
+
+  if (serverEndIndex < server_url.length()) {
+    api_path = server_url.substring(serverEndIndex); // Extraer la API, si existe
+    if (api_path.endsWith("/")) api_path = api_path.substring(0, api_path.length() - 1);
+  } else {
+    api_path = ""; // Si no hay API en la URL
+  }
+  
   Serial.println("LNDHub credentials: "+ credentials + "\r\nLNDHub login_auth: " + login_auth + "\r\nLNDHub password_auth: " + password_auth);
+  Serial.println("Server url: "+ LNHUBServer + "\r\nLNDHub api_path: " + api_path);
 }
 
 /****************** DO FIRST AUTHORIZATION ****************/
 bool doAuth(){
   WiFiClientSecure client;
   client.setInsecure();
-
-  if (!client.connect(LNHUBServer, 443)){
+  
+  if (!client.connect(LNHUBServer.c_str(), 443)){
     Serial.println("Client error connect LNHUB");
     return false;   
   }
   Serial.println("\r\n\r\n---------------- CONNECTED TO LNHUB >> GET auth ----------");
   
-  String url = "/auth?type=auth";
+  //String url = "/lndhub/auth"; //api_path + "/auth"; //"/auth?type=auth";
+  String url = api_path + "/auth"; //"/auth?type=auth";
   String rBody =  String("{\r\n") +
                   "\"login\": \"" + login_auth + "\",\r\n" +
                   "\"password\": \"" + password_auth + "\"\r\n" +
@@ -159,12 +184,12 @@ unsigned long checkBalance(void){
 
   unsigned long charBalance = 0;
   try {
-    if (!client.connect(LNHUBServer, 443)){
+    if (!client.connect(LNHUBServer.c_str(), 443)){
       return -1;   
     }
     Serial.println("\r\n\r\n---------------- CONNECTED TO LNHUB >> GET BALANCE ----------");
     
-    String url = "/balance";
+    String url = api_path + "/balance";
     client.print(String("GET ") + url + " HTTP/1.1\r\n" +
                   "Host: " + LNHUBServer + "\r\n" +
                   "Authorization: Bearer " + access_token +" \r\n" +
